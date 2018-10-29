@@ -30,13 +30,14 @@ class Login extends React.Component {
     }
 
     render() {
+        const { message } = this.props.auth
         return (
             < form className="login form" id="login-form" onSubmit={this.handleLogin} >
                 <h1 className="title">User Login</h1>
-                <div>{}</div>
-                <input type="email" name='email' placeholder="Email Address" autoFocus onChange={this.handleChange} />
+                <div className="error">{message}</div>
+                <input type="email" name='email' placeholder="Email Address" autoFocus onChange={this.handleChange} required />
                 <input type="password" name='password' placeholder="Password"
-                    pattern=".{8,}" title="8 characters minimum" onChange={this.handleChange} />
+                    pattern=".{8,}" title="8 characters minimum" onChange={this.handleChange} required />
                 <button type="submit" className="submit-btn">Login</button>
                 <p className="login-signup-switch"><Link to="/forgot_password">Forgot Password?</Link></p>
                 <p className="login-signup-switch"><label htmlFor='form-switch'>Not a member? Signup</label></p>
