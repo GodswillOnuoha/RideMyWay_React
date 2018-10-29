@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
 import rides from './rides'
-import users from './users'
+import auth from './auth'
 
-export default combineReducers({ rides, users });
+export default combineReducers({ rides, auth });

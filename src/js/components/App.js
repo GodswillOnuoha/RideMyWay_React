@@ -1,54 +1,45 @@
-import React from "react";
+import React, { Fragment } from "react";
 import ReactDOM from "react-dom";
 import { Provider } from 'react-redux';
 import store from '../store';
-import Layout from "./layout";
-
-
-// ReactDOM.render(
-// <Provider store={store}>
-//   <Layout />
-// </Provider>,
-//   document.getElementById("root")
-// );
 import { BrowserRouter as Router, Route } from 'react-router-dom'
-import Home from './home';
-import Login from './login';
+import isLoggedIn from '../utils/auth'
+import { auth } from '../actions/auth'
 
-// const login = () => {
-//   return (
-//     <Provider store={store} >
-//       <Login />
-//     </Provider>
-//   )
-// }
+import Home from './home';
+import Auth from '../containers/auth/Auth';
+import CreateRide from '../containers/createRide/CreateRide'
+import ProtectedRoute from '../containers/ProtectedRoute'
+import Logout from '../components/Logout'
 
 class App extends React.Component {
+
+  checkAuthentication = () => {
+    if (isLoggedIn()) {
+      const user = JSON.parse(localStorage.user);
+      store.dispatch(auth.setLoggedIn(user));
+    } else {
+      store.dispatch(auth.logoutUser());
+    }
+  }
   render() {
+    this.checkAuthentication()
+
     return (
-      <div>
-
-        {/* home */}
-        <Route exact path="/" component={() => (
-          <Provider store={store} >
-            <Home />
-          </Provider>
-        )} />
-
-
-        {/* login  */}
-        <Route path="/login" component={() => (
-          <Provider store={store} >
-            <Login />
-          </Provider>
-        )} />
-      </div>
+      <Provider store={store} >
+        <Router>
+          <Fragment>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/auth" component={Auth} />
+            <ProtectedRoute exact path="/logout" component={Logout} />
+            <ProtectedRoute exact path="/create_ride" component={CreateRide} />
+          </Fragment>
+        </Router>
+      </Provider >
     )
   }
 }
 
 ReactDOM.render(
-  <Router>
-    <App />
-  </Router>,
-  document.getElementById('root'));
+  <App />,
+  document.getElementById('root'))
