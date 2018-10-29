@@ -38,7 +38,7 @@ const login = (user) => (dispatch) => {
     axios.post(`${API}/api/v1/auth/login`, user)
         .then((response) => {
             dispatch(loading(false))
-            localStorage.setItem("token", response.data.token);
+            localStorage.setItem("token", response.data.user.token);
             localStorage.setItem('user', JSON.stringify(response.data.user));
             return dispatch({ type: types.LOGIN_SUCCESS, payload: response.data });
         })

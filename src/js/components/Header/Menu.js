@@ -7,9 +7,7 @@ export default function Menu() {
 
     const handleLogout = (event) => {
         event.preventDefault()
-        console.log(event)
         logout(event.dispatch)
-        console.log('after')
     }
 
     return (

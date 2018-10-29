@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchRides } from '../actions/ridesActions';
 
 // eslint disable experimentalDecorators
 @connect((store) => {
@@ -10,9 +9,6 @@ import { fetchRides } from '../actions/ridesActions';
     }
 })
 class Layout extends React.Component {
-    componentWillMount() {
-        this.props.dispatch(fetchRides());
-    }
     render() {
         const { rides } = this.props
         return (
