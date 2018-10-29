@@ -1,35 +1,34 @@
 import React from 'react';
+import Header from '../components/Header/Header'
+import Footer from '../components/Footer/Footer'
+import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 
+
+// eslint disable experimentalDecorators
+@connect((store) => {
+    return {
+        user: store.users
+    }
+})
 class Home extends React.Component {
+
     render() {
+        const { user } = this.props
+        const isLoggedIn = user === null;
         return (
             <div id="home-page-wrapper">
-                <nav className="navbar">
-                    <div className="logo">
-                        <a href="index.html" > <h2>Ride My Way </h2> </a>
-                    </div>
-                    <div className="navbar-link">
-                        <a href="login.html">Login/Sign Up</a>
-                    </div>
-                </nav>
-
+                <Header />
                 <div id="home-container">
                     <div id="overlay">
                         <div id="overlay_pill">
-                            <a href="create_ride.html">Offer a ride</a>
-                            <a href="all_rides_view.html">Join a ride</a>
+                            <Link to="/create_ride">Offer a ride</Link>
+                            <Link to="/all_rides_view">Join a ride</Link>
                         </div>
                     </div>
                 </div>
-
-                <footer id="home_footer">
-                    <p>
-                        Ride My Way &copy; 2018
-                     </p>
-                </footer>
-
+                <Footer />
             </div>
-
         )
     }
 }

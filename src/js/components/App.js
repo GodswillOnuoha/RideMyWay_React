@@ -1,16 +1,45 @@
-import React from "react";
+import React, { Fragment } from "react";
 import ReactDOM from "react-dom";
-// import { Provider } from 'react-redux';
-// import store from '../store';
-// import Layout from "./layout";
-
-
-// ReactDOM.render(
-//   <Provider store={store}>
-//     <Layout />
-//   </Provider>,
-//   document.getElementById("root")
-// );
+import { Provider } from 'react-redux';
+import store from '../store';
+import { BrowserRouter as Router, Route } from 'react-router-dom'
+import isLoggedIn from '../utils/auth'
+import { auth } from '../actions/auth'
 
 import Home from './home';
-ReactDOM.render(<Home />, document.getElementById('root'));
+import Auth from '../containers/auth/Auth';
+import CreateRide from '../containers/createRide/CreateRide'
+import ProtectedRoute from '../containers/ProtectedRoute'
+import Logout from '../components/Logout'
+
+class App extends React.Component {
+
+  checkAuthentication = () => {
+    if (isLoggedIn()) {
+      const user = JSON.parse(localStorage.user);
+      store.dispatch(auth.setLoggedIn(user));
+    } else {
+      store.dispatch(auth.logoutUser());
+    }
+  }
+  render() {
+    this.checkAuthentication()
+
+    return (
+      <Provider store={store} >
+        <Router>
+          <Fragment>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/auth" component={Auth} />
+            <ProtectedRoute exact path="/logout" component={Logout} />
+            <ProtectedRoute exact path="/create_ride" component={CreateRide} />
+          </Fragment>
+        </Router>
+      </Provider >
+    )
+  }
+}
+
+ReactDOM.render(
+  <App />,
+  document.getElementById('root'))
