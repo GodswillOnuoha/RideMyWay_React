@@ -354,3 +354,6 @@ th{
   float: right;
 }
 
+.error{
+  color: #f00;
+}

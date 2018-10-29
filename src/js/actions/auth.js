@@ -12,6 +12,7 @@ const setLoggedIn = (user) => (dispatch) => {
 
 const logoutUser = () => (dispatch) => {
     localStorage.removeItem('user')
+    localStorage.removeItem('token')
     dispatch({ type: types.LOG_USER_OUT })
 }
 
@@ -19,7 +20,7 @@ const register = (user) => (dispatch) => {
     dispatch(loading(true))
     axios.post(`${API}/api/v1/auth/signup`, user)
         .then((response) => {
-            localStorage.setItem("token", response.data.user.token);
+            localStorage.setItem("token", response.data.token);
             localStorage.setItem('user', JSON.stringify(response.data.user));
             dispatch(loading(false))
             dispatch({ type: types.REGISTERATION_SUCCESS, payload: response.data });
@@ -37,7 +38,7 @@ const login = (user) => (dispatch) => {
     axios.post(`${API}/api/v1/auth/login`, user)
         .then((response) => {
             dispatch(loading(false))
-            localStorage.setItem("token", response.data.user.token);
+            localStorage.setItem("token", response.data.token);
             localStorage.setItem('user', JSON.stringify(response.data.user));
             return dispatch({ type: types.LOGIN_SUCCESS, payload: response.data });
         })
