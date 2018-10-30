@@ -22,8 +22,8 @@ class Home extends React.Component {
                 <div id="home-container">
                     <div id="overlay">
                         <div id="overlay_pill">
-                            <Link to="/create_ride">Offer a ride</Link>
-                            <Link to="/all_rides_view">Join a ride</Link>
+                            <Link to="/users/rides">Offer a ride</Link>
+                            <Link to="/rides">Join a ride</Link>
                         </div>
                     </div>
                 </div>

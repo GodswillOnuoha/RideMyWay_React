@@ -15,8 +15,8 @@ export default function reducer(state = initialState.ride, action) {
         case types.CREAT_RIDE_SUCCESS: {
             return { ...state, success: true }
         }
-        case "FETCH_RIDES": {
-            return { ...state, fetching: true }
+        case types.FETCH_RIDES: {
+            return { ...state, rides: action.payload }
         }
         case "FETCH_RIDES_REJECTED": {
             return { ...state, fetching: false, error: action.payload }

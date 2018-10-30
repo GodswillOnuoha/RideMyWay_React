@@ -11,7 +11,7 @@ import Auth from '../containers/auth/Auth';
 import CreateRide from '../containers/createRide/CreateRide'
 import ProtectedRoute from '../containers/ProtectedRoute'
 import Logout from '../components/Logout'
-import ListRide from '../containers/viewRide/ListRide'
+import ListRide from '../containers/ListRide/ListRide'
 
 class App extends React.Component {
 
