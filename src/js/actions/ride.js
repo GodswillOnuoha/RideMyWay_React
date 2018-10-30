@@ -4,7 +4,8 @@ import {
     LOADING,
     ERROR,
     CREAT_RIDE_SUCCESS,
-    CLEAR
+    CLEAR,
+    FETCH_RIDES
 } from '../action.types/ride'
 
 const API = process.env.RMW_API
@@ -34,4 +35,27 @@ const createRide = (ride) => (dispatch) => {
                 dispatch(error('network error'))
         });
 }
-export const Ride = { createRide, clear }
+
+
+const fetchRidesSuccess = (payload) => ({ type: FETCH_RIDES, payload })
+const fetchRides = () => (dispatch) => {
+    dispatch(loading(true))
+    axios.get(`${API}/api/v1/rides`, {
+        headers: {
+            Authorization: token,
+            "Content-Type": "application/json"
+        }
+    })
+        .then((response) => {
+            dispatch(loading(false))
+            dispatch(fetchRidesSuccess(response.data.rides));
+        })
+        .catch((err) => {
+            dispatch(loading(false))
+            err.response ?
+                dispatch(error(err.response.data)) :
+                dispatch(error('network error'))
+        });
+}
+
+export const Ride = { createRide, clear, fetchRides }
