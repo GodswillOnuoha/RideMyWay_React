@@ -9,14 +9,14 @@ body {
 .main-wrapper {
   min-height:100vh;
   position:relative;
-  background: url('../../static/images/background2.jpg'); 
+  background: url('https://res.cloudinary.com/dpnq32mzu/image/upload/v1540907991/background2.jpg');
   background-size: cover;
 }
 
 #home-page-wrapper {
   height:100vh;
   position:relative;
-  background: url('../../static/images/background4.jpg'); 
+  background: url('https://res.cloudinary.com/dpnq32mzu/image/upload/v1540908003/background4.jpg'); 
   background-size: cover;
   /* display: flex;
   flex-direction: column; */
@@ -357,3 +357,17 @@ th{
 .error{
   color: #f00;
 }
+ .link{
+   cursor: pointer;
+ }
+ .message-bar{
+   position: absolute;
+   z-index: 5;
+   width: 30%;
+   height: 20px;
+   background: #fff;
+   padding-left: 15px;
+   color: red;
+   margin-left: 20%;
+   margin-right: auto !important;
+ }
