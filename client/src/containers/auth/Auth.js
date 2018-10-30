@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router';
-import Login from '../../components/Login'
+import Login from '../../components/login'
 import Register from '../../components/Register'
 import Header from '../../components/Header/Header'
 import Footer from '../../components/Footer/Footer'
