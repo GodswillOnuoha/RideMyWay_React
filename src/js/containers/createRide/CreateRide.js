@@ -12,7 +12,6 @@ class CreateRide extends React.Component {
             boardingStop: "",
             finalDestination: "",
             time: "",
-            date: "",
             vehicleType: "",
             possibleStops: ""
         }
@@ -30,7 +29,8 @@ class CreateRide extends React.Component {
     handleSubmit = (event) => {
         event.preventDefault()
         const { dispatch } = this.props
-        dispatch(Ride.createRide(this.state))
+        const date = document.getElementById('date').value.trim()
+        dispatch(Ride.createRide({ ...this.state, date }))
     }
 
     render() {
@@ -58,7 +58,7 @@ class CreateRide extends React.Component {
                         </div>
                         <div className="form-item">
                             <label htmlFor="date"> Ride date </label>
-                            <input type="date" placeholder="first name" id="date" onMouseOut={this.handleChange} required />
+                            <input type="date" placeholder="first name" id="date" required />
                         </div>
                         <div className="form-item">
                             <label htmlFor="time"> Ride time </label>
