@@ -6,7 +6,6 @@ import { connect } from 'react-redux';
 class ProtectedRoute extends React.Component {
 
   render() {
-    console.log(this.props)
     const { component: ProtectedComponent, isLoggedIn, ...rest } = this.props
     return (
       <Route

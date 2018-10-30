@@ -1,60 +1,83 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import Header from '../../components/Header/Header'
+import Footer from '../../components/Footer/Footer'
+import { Ride } from '../../actions/ride'
 
 class CreateRide extends React.Component {
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            boardingStop: "",
+            finalDestination: "",
+            time: "",
+            date: "",
+            vehicleType: "",
+            possibleStops: ""
+        }
+    }
+    handleSuccess = () => {
+        const { dispatch, history } = this.props
+        dispatch(Ride.clear())
+        history.push('/')
+    }
+
+    handleChange = (event) => {
+        this.setState({ [event.target.id]: event.target.value.trim() });
+    }
+
+    handleSubmit = (event) => {
+        event.preventDefault()
+        const { dispatch } = this.props
+        dispatch(Ride.createRide(this.state))
+    }
+
     render() {
+        const { error, success } = this.props.ride
+        success && this.handleSuccess()
+
         return (
             <div className="main-wrapper">
-                <nav className="navbar">
-                    <div className="logo">
-                        <a href="index.html" > <h2>Ride My Way </h2> </a>
-                    </div>
-                    <div className="navbar-link">
-                        <a href="login.html">Login/Sign Up</a>
-                    </div>
-                </nav>
-
+                <Header />
                 <div id="content-wrapper">
 
-                    <form className="form" id="create-rideform" action="" method='post'>
+                    <form className="form" id="create-rideform" onSubmit={this.handleSubmit}>
                         <h1 className="title">Offer a Ride</h1>
                         <div className="form-item">
-                            <label htmlFor="boarding"> Boarding stop </label>
-                            <input type="text" placeholder="eg. AP-Ikorodu" id="boarding" required />
+                            <label htmlFor="boardingStop"> Boarding stop </label>
+                            <input type="text" placeholder="eg. AP-Ikorodu" id="boardingStop" onChange={this.handleChange} required />
                         </div>
                         <div className="form-item">
-                            <label htmlFor="finalDest"> Final Destination </label>
-                            <input type="text" placeholder="eg. Eko Hotels" id="finalDest" required />
+                            <label htmlFor="finalDestination"> Final Destination </label>
+                            <input type="text" placeholder="eg. Eko Hotels" id="finalDestination" onChange={this.handleChange} required />
                         </div>
                         <div className="form-item">
-                            <label htmlFor="stops">  Possible stops </label>
-                            <input type="text" placeholder="eg. Ojota, Fadeyi, CMS" id="stops" />
+                            <label htmlFor="possibleStops">  Possible stops </label>
+                            <input type="text" placeholder="eg. Ojota, Fadeyi, CMS" id="possibleStops" onChange={this.handleChange} />
                         </div>
                         <div className="form-item">
-                            <label htmlFor="r_date"> Ride date </label>
-                            <input type="date" placeholder="first name" id="r_date" required />
+                            <label htmlFor="date"> Ride date </label>
+                            <input type="date" placeholder="first name" id="date" onMouseOut={this.handleChange} required />
                         </div>
                         <div className="form-item">
-                            <label htmlFor="r_time"> Ride time </label>
-                            <input type="time" placeholder="last name" id="r_time" required />
+                            <label htmlFor="time"> Ride time </label>
+                            <input type="time" placeholder="last name" id="time" onMouseOut={this.handleChange} required />
                         </div>
                         <div className="form-item">
-                            <label htmlFor="v_type"> Vehicle type </label>
-                            <input type="text" placeholder="eg. Toyota Cemry" id="v_type" required />
+                            <label htmlFor="vehicleType"> Vehicle type </label>
+                            <input type="text" placeholder="eg. Toyota Cemry" id="vehicleType" onChange={this.handleChange} required />
                         </div>
+                        <div className="error">{error.message}</div>
                         <button type="submit" className="submit-btn">Submit</button>
                     </form>
 
                 </div>
-
-                <footer>
-                    <p>
-                        Ride My Way &copy; 2018
-            </p>
-                </footer>
-
+                <Footer />
             </div>
         )
     }
 }
 
-export default CreateRide
+
+export default connect(state => state)(CreateRide)

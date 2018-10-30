@@ -1,7 +1,7 @@
-import { auth } from '../initialState'
+import initialState from '../initialState'
 import * as types from '../action.types/auth'
 
-export default function reducer(state = auth, action) {
+export default function reducer(state = initialState.auth, action) {
     switch (action.type) {
         case types.LOG_USER_IN: {
             return { ...state, isLoggedIn: true, user: action.payload }
