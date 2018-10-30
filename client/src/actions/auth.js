@@ -2,8 +2,8 @@ import axios from 'axios';
 
 import * as types from '../action.types/auth'
 
-const API = process.env.RMW_API
-
+// const API = process.env.RMW_API
+const API = "https://carpoolapp1.herokuapp.com"
 const loading = (payload) => ({ type: types.LOADING, payload: payload })
 
 const setLoggedIn = (user) => (dispatch) => {
@@ -20,7 +20,7 @@ const register = (user) => (dispatch) => {
     dispatch(loading(true))
     axios.post(`${API}/api/v1/auth/signup`, user)
         .then((response) => {
-            localStorage.setItem("token", response.data.token);
+            localStorage.setItem("token", response.data.user.token);
             localStorage.setItem('user', JSON.stringify(response.data.user));
             dispatch(loading(false))
             dispatch({ type: types.REGISTERATION_SUCCESS, payload: response.data });

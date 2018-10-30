@@ -12,6 +12,7 @@ import CreateRide from '../containers/createRide/CreateRide'
 import ProtectedRoute from '../containers/ProtectedRoute'
 import Logout from '../components/Logout'
 import ListRide from '../containers/ListRide/ListRide'
+import '../../static/styles/main.css'
 
 class App extends React.Component {
 

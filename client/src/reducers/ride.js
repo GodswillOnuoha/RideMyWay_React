@@ -12,7 +12,7 @@ export default function reducer(state = initialState.ride, action) {
         case types.LOADING: {
             return { ...state, loading: action.payload, error: "", success: false }
         }
-        case types.CREAT_RIDE_SUCCESS: {
+        case types.API_CALL_SUCCESS: {
             return { ...state, success: true }
         }
         case types.FETCH_RIDES: {
