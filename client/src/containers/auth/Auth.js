@@ -17,7 +17,7 @@ class Auth extends React.Component {
         if (location.state) redirectPath = location.state.from.pathname
 
         if (auth.isLoggedIn) {
-            return <Redirect to={redirectPath} />
+            this.props.history.push(redirectPath)
         }
 
         return (
