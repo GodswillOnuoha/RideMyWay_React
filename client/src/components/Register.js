@@ -2,13 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux'
 import { auth } from '../actions/auth';
 
-// eslint disable experimentalDecorators
-@connect((state) => {
-    return {
-        auth: state.auth
-    }
-})
-
 class Register extends React.Component {
     state = {
         firstname: "",
@@ -81,4 +74,5 @@ class Register extends React.Component {
         )
     }
 }
-export default Register;
+
+export default connect(state => { return { auth: state.auth } })(Register)

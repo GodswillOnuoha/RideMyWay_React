@@ -2,8 +2,6 @@ import axios from 'axios';
 
 import * as types from '../action.types/auth'
 
-// const API = process.env.RMW_API
-const API = "https://carpoolapp1.herokuapp.com"
 const loading = (payload) => ({ type: types.LOADING, payload: payload })
 
 const setLoggedIn = (user) => (dispatch) => {
@@ -18,7 +16,7 @@ const logoutUser = () => (dispatch) => {
 
 const register = (user) => (dispatch) => {
     dispatch(loading(true))
-    axios.post(`${API}/api/v1/auth/signup`, user)
+    axios.post(`${__API__}/api/v1/auth/signup`, user)
         .then((response) => {
             localStorage.setItem("token", response.data.user.token);
             localStorage.setItem('user', JSON.stringify(response.data.user));
@@ -35,7 +33,7 @@ const register = (user) => (dispatch) => {
 
 const login = (user) => (dispatch) => {
     dispatch(loading(true))
-    axios.post(`${API}/api/v1/auth/login`, user)
+    axios.post(`${__API__}/api/v1/auth/login`, user)
         .then((response) => {
             dispatch(loading(false))
             localStorage.setItem("token", response.data.user.token);

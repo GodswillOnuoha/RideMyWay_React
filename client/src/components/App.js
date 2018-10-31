@@ -12,6 +12,8 @@ import CreateRide from '../containers/createRide/CreateRide'
 import ProtectedRoute from '../containers/ProtectedRoute'
 import Logout from '../components/Logout'
 import ListRide from '../containers/ListRide/ListRide'
+import RideDetail from '../containers/RideDetail/RideDetail'
+import Profile from '../containers/Profile/Profile'
 import '../../static/styles/main.css'
 
 class App extends React.Component {
@@ -34,6 +36,8 @@ class App extends React.Component {
             <Route exact path="/" component={Home} />
             <Route exact path="/auth" component={Auth} />
             <ProtectedRoute exact path="/logout" component={Logout} />
+            <ProtectedRoute exact path="/user/profile" component={Profile} />
+            <ProtectedRoute exact path="/ridee/ride" component={RideDetail} />
             <ProtectedRoute exact path="/rides" component={ListRide} />
             <ProtectedRoute exact path="/users/rides" component={CreateRide} />
           </Fragment>
