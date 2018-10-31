@@ -15,6 +15,7 @@
     "start": "serve -s dist/",
     "test": "jest --coverage",
     "test:watch": "npm test -- --watch",
+    "coveralls": "nyc --reporter=lcov --reporter=text-lcov npm test",
     "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
   "keywords": [],
