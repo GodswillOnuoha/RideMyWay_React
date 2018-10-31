@@ -371,3 +371,25 @@ th{
    margin-left: 20%;
    margin-right: auto !important;
  }
+
+ .accep-reject{
+   height: 100%;
+   text-align: center;
+    margin-left: auto !important;
+    margin-right: auto;
+ }
+ .accep-reject span{
+   cursor: pointer;
+   height: 20px;
+   background: darkgreen;
+   border-radius: 3px;
+   color: white;
+   padding: 3px;
+ }
+ .accep-reject span:first-child{
+margin-left: auto;
+margin-right: 20px;
+ }
+ .accep-reject span:last-child{
+   margin-right: auto;
+ }
