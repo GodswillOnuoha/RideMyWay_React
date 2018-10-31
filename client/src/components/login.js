@@ -3,12 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux'
 import { auth } from '../actions/auth';
 
-// eslint disable experimentalDecorators
-@connect((state) => {
-    return {
-        auth: state.auth
-    }
-})
+
 class Login extends React.Component {
     state = {
         email: "",
@@ -45,4 +40,5 @@ class Login extends React.Component {
         )
     }
 }
-export default Login;
+
+export default connect(state => { return { auth: state.auth } })(Login);
