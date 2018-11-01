@@ -6,7 +6,7 @@ const env = process.env.NODE_ENV;
 const apiHost = env === 'production' ? "'https://carpoolapp1.herokuapp.com'" : "'http://localhost:3000'";
 
 module.exports = {
-  entry: './client/src/components/App.js',
+  entry: './client/src/index.js',
   output: {
     path: path.join(__dirname, 'dist'),
     publicPath: '/',

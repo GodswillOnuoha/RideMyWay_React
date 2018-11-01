@@ -18,7 +18,7 @@ const success = () => ({ type: API_CALL_SUCCESS })
 const clear = () => ({ type: CLEAR })
 const createRide = (ride) => (dispatch) => {
     dispatch(loading(true))
-    axios.post(`${__API__}/api/v1/users/rides`, ride, {
+    return axios.post(`${__API__}/api/v1/users/rides`, ride, {
         headers: {
             Authorization: token,
             "Content-Type": "application/json"
@@ -40,7 +40,7 @@ const createRide = (ride) => (dispatch) => {
 const fetchRidesSuccess = (payload) => ({ type: FETCH_RIDES, payload })
 const fetchRides = () => (dispatch) => {
     dispatch(loading(true))
-    axios.get(`${__API__}/api/v1/rides`, {
+    return axios.get(`${__API__}/api/v1/rides`, {
         headers: {
             Authorization: token,
             "Content-Type": "application/json"
@@ -61,7 +61,7 @@ const fetchRides = () => (dispatch) => {
 //Join roide actions
 const requestJoin = (rideId) => (dispatch) => {
     dispatch(loading(true))
-    axios.post(`${__API__}/api/v1/rides/${rideId}/requests`, {}, {
+    return axios.post(`${__API__}/api/v1/rides/${rideId}/requests`, {}, {
         headers: {
             Authorization: token,
             "Content-Type": "application/json"
@@ -81,7 +81,7 @@ const requestJoin = (rideId) => (dispatch) => {
 
 const respondToJoinRequest = (rideId, requestId, accept) => (dispatch) => {
     dispatch(loading(true))
-    axios.put(`${__API__}/api/v1/users/rides/${rideId}/requests/${requestId}`, { accept }, {
+    return axios.put(`${__API__}/api/v1/users/rides/${rideId}/requests/${requestId}`, { accept }, {
         headers: {
             Authorization: token,
             "Content-Type": "application/json"

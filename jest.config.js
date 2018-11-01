@@ -80,7 +80,12 @@ module.exports = {
   // ],
 
   // A map from regular expressions to module names that allow to stub out resources with a single module
-  // moduleNameMapper: {},
+  moduleNameMapper: {
+    "\\.(css|scss)$": "<rootDir>/client/__test__/__mocks__/style-mock.js",
+    "^image![a-zA-Z0-9$_-]+$": "GlobalImageStub",
+    "^[./a-zA-Z0-9$_-]+\\.png$": "<rootDir>/RelativeImageStub.js",
+    "module_name_(.*)": "<rootDir>/substituted_module_$1.js"
+  },
 
   // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader
   // modulePathIgnorePatterns: [],
@@ -107,7 +112,7 @@ module.exports = {
   // resetModules: false,
 
   // A path to a custom resolver
-  // resolver: null,
+  resolver: null,
 
   // Automatically restore mock state between every test
   // restoreMocks: false,
