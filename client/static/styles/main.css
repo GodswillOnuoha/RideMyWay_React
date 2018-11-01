@@ -82,7 +82,7 @@ padding-top: 10px;
 .logo {
 text-decoration: none;
 float: left;
-height: 100vh;
+/* height: 100vh; */
 line-height: 70px;
 }
 
@@ -104,11 +104,9 @@ color: #23f1f8;
 
 #overlay_pill {
   font-size: 25px;
-  width: 50%;
-  height: 100%;
+  width: 70%;
   display: flex;
 }
-
 #overlay_pill a {
   text-decoration: none;
   border-radius: 20px;
@@ -122,6 +120,27 @@ color: #23f1f8;
   background: rgba(31, 144, 195, 0.5);
   margin: 300px auto;
 }
+
+@media only screen and (max-width: 800px) {
+  #overlay_pill{
+    width: 100%;
+  }
+} 
+
+@media only screen and (max-width: 600px) {
+  #overlay_pill{
+    flex-direction: column;
+  }
+  #overlay_pill a:first-child {
+    margin-bottom: 0px;
+    margin-top: 250px;
+  }
+  #overlay_pill a:last-child {
+    margin-top: 10%;
+  }
+}  
+
+
 
 #overlay_pill a:hover{
   background: rgba(200, 144, 35, 0.5);
@@ -164,13 +183,15 @@ label {
 }
 
 .form-item {
-  height: 60px;
+  height: 50px;
   color: #ADADAD;
   margin-bottom: 25px;
 }
 .form-item label{
   display: block;
-  float: left;
+  text-align: left;
+  width: 84%;
+  padding-left: 10px;
   margin-left: 7%;
 }
 
@@ -259,11 +280,7 @@ h1.title{
   background: white;
   /* padding: 10px 5px; */
 }
-.viewTable {
-  /* color: #f7f7f7; */
-  /* border: 15px solid #f7f7f7;
-  border-top: 0px; */
-}
+
 .table-title {
   margin: 0;
 }
@@ -321,7 +338,7 @@ th{
   /* buttons */
 .submit-btn {
   float: left;
-  margin-left: 6%; 
+  margin-left: 8%; 
   width: 100px;
   height: 45px;
   padding: 0;
@@ -393,3 +410,27 @@ margin-right: 20px;
  .accep-reject span:last-child{
    margin-right: auto;
  }
+ .loader {
+  position: absolute;
+  margin-left: 20px;
+  border-top: 10px dotted lightgreen;
+  border-bottom: 10px dotted lightgreen;
+  border-left: 10px dotted #335;
+  border-right: 10px dotted #335;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+button[disabled]{
+  cursor: progress;
+  border: 1px solid #999999;
+  background-color: #e66;
+  color: #666666;
+}

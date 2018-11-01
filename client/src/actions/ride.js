@@ -9,7 +9,6 @@ import {
 } from '../action.types/ride'
 
 const API = process.env.RMW_API
-const { token } = localStorage;
 const error = (payload) => ({ type: ERROR, payload: payload })
 const loading = (payload) => ({ type: LOADING, payload: payload })
 const success = () => ({ type: API_CALL_SUCCESS })
@@ -17,6 +16,7 @@ const success = () => ({ type: API_CALL_SUCCESS })
 // Create ride actions
 const clear = () => ({ type: CLEAR })
 const createRide = (ride) => (dispatch) => {
+    const { token } = localStorage;
     dispatch(loading(true))
     return axios.post(`${__API__}/api/v1/users/rides`, ride, {
         headers: {
@@ -39,6 +39,7 @@ const createRide = (ride) => (dispatch) => {
 // Fetch ride actions
 const fetchRidesSuccess = (payload) => ({ type: FETCH_RIDES, payload })
 const fetchRides = () => (dispatch) => {
+    const { token } = localStorage;
     dispatch(loading(true))
     return axios.get(`${__API__}/api/v1/rides`, {
         headers: {
@@ -60,6 +61,7 @@ const fetchRides = () => (dispatch) => {
 
 //Join roide actions
 const requestJoin = (rideId) => (dispatch) => {
+    const { token } = localStorage;
     dispatch(loading(true))
     return axios.post(`${__API__}/api/v1/rides/${rideId}/requests`, {}, {
         headers: {
@@ -80,6 +82,7 @@ const requestJoin = (rideId) => (dispatch) => {
 }
 
 const respondToJoinRequest = (rideId, requestId, accept) => (dispatch) => {
+    const { token } = localStorage;
     dispatch(loading(true))
     return axios.put(`${__API__}/api/v1/users/rides/${rideId}/requests/${requestId}`, { accept }, {
         headers: {

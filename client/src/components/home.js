@@ -4,11 +4,6 @@ import Footer from '../components/Footer/Footer'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
-@connect((store) => {
-    return {
-        user: store.users
-    }
-})
 class Home extends React.Component {
 
     render() {
@@ -30,5 +25,4 @@ class Home extends React.Component {
         )
     }
 }
-
-export default Home;
+export default connect(state => { user: state.users })(Home);

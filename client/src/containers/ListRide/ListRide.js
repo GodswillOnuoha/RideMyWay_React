@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 import { Ride } from '../../actions/ride'
 import RideDetail from '../RideDetail/RideDetail'
 
-const user = JSON.parse(localStorage.getItem('user'))
+
 class ListRide extends React.Component {
     constructor(props) {
         super(props)
@@ -43,8 +43,7 @@ class ListRide extends React.Component {
     }
 
     setResponseAction = (ride) => {
-        console.log('user ', user)
-        console.log('fride', JSON.parse(ride.joinrequests));
+        const { user } = this.props.auth
 
         const requests = JSON.parse(ride.joinrequests)
         if (requests.rejected.indexOf(user.username) > -1)

@@ -9,7 +9,8 @@ class Register extends React.Component {
         username: "",
         email: "",
         password: "",
-        repassword: ""
+        repassword: "",
+        passwordErr: "",
     }
 
     handleChange = (event) => {
@@ -18,14 +19,26 @@ class Register extends React.Component {
 
     handleRegister = (event) => {
         event.preventDefault();
-        this.props.dispatch(auth.register(this.state));
+        if (this.state.password === this.state.repassword) {
+            this.props.dispatch(auth.register(this.state));
+        } else {
+            this.setState({ passwordErr: "password mismatch" })
+        }
+    }
+    clearErr = () => {
+        this.setState({ passwordErr: "" })
     }
 
     render() {
-        const { message } = this.props.auth
+        const { message, loading } = this.props.auth
+
+        let submitButton = loading ?
+            <button type="submit" className="submit-btn" disabled>Login</button> :
+            <button type="submit" className="submit-btn">Login</button>
 
         return (
             < form className="login signup form" id="signup-form" onSubmit={this.handleRegister} >
+                {loading && <div className='loader' />}
                 <h1 className="title">User Signup</h1>
                 <div className="form-item">
                     <label htmlFor="firstname">Name</label><div className='error'>{message}</div>
@@ -53,9 +66,10 @@ class Register extends React.Component {
                         required />
                 </div>
                 <div className="form-item" >
-                    <label htmlFor="password"> Password</label>
+                    <label htmlFor="password"> Password</label><div className='error'>{this.state.passwordErr}</div>
                     <input type="password" placeholder="Password" id="password" required
                         onChange={this.handleChange}
+                        onClick={this.clearErr}
                         required pattern=".{8,}" title="8 characters minimum" />
                 </div>
                 <div className="form-item">
@@ -63,6 +77,7 @@ class Register extends React.Component {
                     <div className="imputError" id="repasswordErr"></div>
                     <input type="password" placeholder="Re Password" id="repassword" required
                         onChange={this.handleChange}
+                        onClick={this.clearErr}
                         required pattern=".{8,}" title="8 characters minimum" />
                 </div>
 
