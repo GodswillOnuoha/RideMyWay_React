@@ -78,33 +78,78 @@ class Profile extends React.Component {
 
                             <h2>My Rides</h2>
                             <div id="total_rides">
-                                <div id="ride_given">Total rides given: 2</div>
-                                <div id="rides_taken">Total rides taken: 1</div><br />
+                                <div id="ride_given">Total rides given: 0</div>
+                                <div id="rides_taken">Total rides taken: 0</div><br />
 
                                 <div className="table_wrapper">
                                     <h1 className="title table-title">Active Rides</h1>
                                     <table>
                                         <tbody>
                                             <tr>
-                                                <th>Boarding Time</th>
+                                                <th>Departure Time</th>
                                                 <th>Boarding Stop</th>
-                                                <th>Final Destination</th>
+                                                <th>Destination</th>
                                                 <th>Possible Stops </th>
                                                 <th>Action</th>
                                             </tr>
 
-                                            {rides.filter(ride => ride.userid === user.id).map(ride => {
+
+                                            {
+                                                rides.filter(ride => ride.userid === user.id
+                                                ).map(ride => {
+                                                    return (
+                                                        <tr key={ride.rideid} >
+                                                            <td>{ride.ridetime}</td>
+                                                            <td>{ride.boardingstop}</td>
+                                                            <td>{ride.finaldestination}</td>
+                                                            <td>{JSON.parse(ride.possiblestops).join(', ')}</td>
+                                                            <td><span className='link' data-ride={JSON.stringify(ride)}
+                                                                onClick={this.handleViewDetail.bind(this)}>
+                                                                <img width='26' src="https://res.cloudinary.com/dpnq32mzu/image/upload/v1540982262/Screenshot_2018-10-31_at_11.37.10_AM.png">
+                                                                </img></span>
+                                                            </td>
+                                                        </tr>)
+                                                })}
+
+
+                                            {rides.filter(ride =>
+                                                JSON.parse(ride.joinrequests).rejected.indexOf(user.username) > -1
+                                            ).map(ride => {
                                                 return (
                                                     <tr key={ride.rideid} >
                                                         <td>{ride.ridetime}</td>
                                                         <td>{ride.boardingstop}</td>
                                                         <td>{ride.finaldestination}</td>
                                                         <td>{JSON.parse(ride.possiblestops).join(', ')}</td>
-                                                        <td><span className='link' data-ride={JSON.stringify(ride)}
-                                                            onClick={this.handleViewDetail.bind(this)}>
-                                                            <img width='26' src="https://res.cloudinary.com/dpnq32mzu/image/upload/v1540982262/Screenshot_2018-10-31_at_11.37.10_AM.png">
-                                                            </img></span>
-                                                        </td>
+                                                        <td><span>rejected</span></td>
+                                                    </tr>)
+                                            })}
+
+
+                                            {rides.filter(ride =>
+                                                JSON.parse(ride.joinrequests).accepted.indexOf(user.username) > -1
+                                            ).map(ride => {
+                                                return (
+                                                    <tr key={ride.rideid} >
+                                                        <td>{ride.ridetime}</td>
+                                                        <td>{ride.boardingstop}</td>
+                                                        <td>{ride.finaldestination}</td>
+                                                        <td>{JSON.parse(ride.possiblestops).join(', ')}</td>
+                                                        <td><span>accepted</span></td>
+                                                    </tr>)
+                                            })}
+
+
+                                            {rides.filter(ride =>
+                                                JSON.parse(ride.joinrequests).requests.indexOf(user.username) > -1
+                                            ).map(ride => {
+                                                return (
+                                                    <tr key={ride.rideid} >
+                                                        <td>{ride.ridetime}</td>
+                                                        <td>{ride.boardingstop}</td>
+                                                        <td>{ride.finaldestination}</td>
+                                                        <td>{JSON.parse(ride.possiblestops).join(', ')}</td>
+                                                        <td><span>pending</span></td>
                                                     </tr>)
                                             })}
                                         </tbody>
@@ -116,14 +161,14 @@ class Profile extends React.Component {
                                     <table>
                                         <tbody>
                                             <tr>
-                                                <th>Boarding Time</th>
+                                                <th>Departure Time</th>
                                                 <th>Boarding Stop</th>
-                                                <th>Final Destination</th>
+                                                <th>Destination</th>
                                                 <th>Possible Stops </th>
                                                 <th>Action</th>
                                             </tr>
 
-                                            <tr>
+                                            {/* <tr>
                                                 <td>6:30am</td>
                                                 <td>AP-Ikorodu</td>
                                                 <td>Eko Hotels</td>
@@ -137,7 +182,7 @@ class Profile extends React.Component {
                                                 <td>Badagry</td>
                                                 <td>Lekki, Oshodi, Mile 12</td>
                                                 <td><a href="#"><img width='26' src='https://res.cloudinary.com/dpnq32mzu/image/upload/v1540982262/Screenshot_2018-10-31_at_11.37.10_AM.png'></img></a></td>
-                                            </tr>
+                                            </tr> */}
                                         </tbody>
                                     </table>
                                 </div>
@@ -147,20 +192,20 @@ class Profile extends React.Component {
                                     <table>
                                         <tbody>
                                             <tr>
-                                                <th>Boarding Time</th>
+                                                <th>Departure Time</th>
                                                 <th>Boarding Stop</th>
-                                                <th>Final Destination</th>
+                                                <th>Destination</th>
                                                 <th>Possible Stops </th>
                                                 <th>Action</th>
                                             </tr>
 
-                                            <tr>
+                                            {/* <tr>
                                                 <td>6:30am</td>
                                                 <td>AP-Ikorodu</td>
                                                 <td>Eko Hotels</td>
                                                 <td>Ojota, Fadeyi, CMS</td>
                                                 <td><a href="#"><img width='26' src='https://res.cloudinary.com/dpnq32mzu/image/upload/v1540982262/Screenshot_2018-10-31_at_11.37.10_AM.png'></img></a></td>
-                                            </tr>
+                                            </tr> */}
                                         </tbody>
                                     </table>
                                 </div>
