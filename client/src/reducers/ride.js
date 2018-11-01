@@ -18,15 +18,6 @@ export default function reducer(state = initialState.ride, action) {
         case types.FETCH_RIDES: {
             return { ...state, rides: action.payload }
         }
-
-        //single ride
-
-        case "FETCH_RIDES_REJECTED": {
-            return { ...state, fetching: false, error: action.payload }
-        }
-        case "FETCH_RIDES_FULFILLED": {
-            return { ...action.payload }
-        }
     }
     return state;
 }
