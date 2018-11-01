@@ -5,7 +5,6 @@ import Footer from '../../components/Footer/Footer'
 import { Ride } from '../../actions/ride'
 import RideDetail from '../RideDetail/RideDetail'
 
-const user = JSON.parse(localStorage.getItem('user'))
 class Profile extends React.Component {
     constructor(props) {
         super(props)
@@ -28,6 +27,7 @@ class Profile extends React.Component {
 
     render() {
         const { rides } = this.props.ride
+        const { user } = this.props.auth
 
         //redirect is a ride is selected
         if (this.state.ride.rideid)
