@@ -42,7 +42,8 @@ class RideDetail extends React.Component {
     handleSuccess = () => {
         const { dispatch, history } = this.props
         dispatch(Ride.clear())
-        history.push('/rides')
+        // history.push('/rides')
+        window.location.reload();
     }
 
     handleBack = () => {
