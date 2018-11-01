@@ -24,11 +24,12 @@ class JoinResponse extends React.Component {
     handleSuccess = () => {
         const { dispatch, history } = this.props
         dispatch(Ride.clear())
-        history.push('/')
+        history.push('/rides')
     }
 
     handleBack = () => {
         // const { dispatch, history } = this.props
+
         // dispatch(Ride.clear())
         // history.pop()
         this.setState({ back: true })

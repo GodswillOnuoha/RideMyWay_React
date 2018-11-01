@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 import { Ride } from '../../actions/ride'
 import RideDetail from '../RideDetail/RideDetail'
 
-
+const user = JSON.parse(localStorage.getItem('user'))
 class ListRide extends React.Component {
     constructor(props) {
         super(props)
@@ -38,7 +38,37 @@ class ListRide extends React.Component {
     handleSuccess = () => {
         const { dispatch, history } = this.props
         dispatch(Ride.clear())
-        history.push('/')
+        // history.push('/rides')
+        window.location.reload();
+    }
+
+    setResponseAction = (ride) => {
+        console.log('user ', user)
+        console.log('fride', JSON.parse(ride.joinrequests));
+
+        const requests = JSON.parse(ride.joinrequests)
+        if (requests.rejected.indexOf(user.username) > -1)
+            return <span>rejected</span>
+
+        if (requests.accepted.indexOf(user.username) > -1)
+            return <span>accepted</span>
+
+        if (requests.requests.indexOf(user.username) > -1)
+            return <span>pending</span>
+        return (
+            <span>
+                <span className='link' data-ride={JSON.stringify(ride)} data-rideid={ride.rideid}
+                    onClick={this.handleJoineRide.bind(this)}>
+                    <img width='26' src="https://res.cloudinary.com/dpnq32mzu/image/upload/v1540978992/Screenshot_2018-10-31_at_10.40.52_AM.png">
+                    </img>
+                </span>
+                <span >  or  </span>
+                <span style={{ color: 'green' }} data-ride={JSON.stringify(ride)} data-rideid={ride.rideid}
+                    onClick={this.handleViewRide.bind(this)}><img width='24'
+                        src="https://res.cloudinary.com/dpnq32mzu/image/upload/v1540978992/Screenshot_2018-10-31_at_10.40.39_AM.png"></img>
+                </span>
+            </span>
+        )
     }
 
     render() {
@@ -79,11 +109,7 @@ class ListRide extends React.Component {
                                             <td>{ride.finaldestination}</td>
                                             <td>{JSON.parse(ride.possiblestops).join(', ')}</td>
                                             <td >
-                                                <span className='link' data-ride={JSON.stringify(ride)} data-rideid={ride.rideid}
-                                                    onClick={this.handleJoineRide.bind(this)}>
-                                                    <img width='26' src="https://res.cloudinary.com/dpnq32mzu/image/upload/v1540978992/Screenshot_2018-10-31_at_10.40.52_AM.png">
-                                                    </img></span> &nbsp; <span >or</span> &nbsp;
-                                                <span style={{ color: 'green' }} data-ride={JSON.stringify(ride)} data-rideid={ride.rideid} onClick={this.handleViewRide.bind(this)}><img width='26' src="https://res.cloudinary.com/dpnq32mzu/image/upload/v1540978992/Screenshot_2018-10-31_at_10.40.39_AM.png"></img></span>
+                                                {this.setResponseAction(ride)}
                                             </td>
                                         </tr>)
                                 })}
