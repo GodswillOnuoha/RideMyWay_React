@@ -16,7 +16,7 @@ class ProtectedRoute extends React.Component {
             ? <ProtectedComponent {...props} />
             : (
               <Redirect to={{
-                pathname: '/auth',
+                pathname: '/login',
                 state: { from: props.location }
               }}
               />

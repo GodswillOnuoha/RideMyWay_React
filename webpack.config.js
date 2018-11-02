@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 
 const env = process.env.NODE_ENV;
-const apiHost = env === 'production' ? "'https://carpoolapp1.herokuapp.com'" : "'http://localhost:3000'";
+const apiHost = env === 'production' ? "'https://carpoolapp1.herokuapp.com'" : "'https://carpoolapp1.herokuapp.com'"  //"'http://localhost:3000'";
 
 module.exports = {
   entry: './client/src/index.js',

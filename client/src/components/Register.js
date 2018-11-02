@@ -30,15 +30,10 @@ class Register extends React.Component {
     }
 
     render() {
-        const { message, loading } = this.props.auth
-
-        let submitButton = loading ?
-            <button type="submit" className="submit-btn" disabled>Login</button> :
-            <button type="submit" className="submit-btn">Login</button>
+        const { message } = this.props.auth
 
         return (
             < form className="login signup form" id="signup-form" onSubmit={this.handleRegister} >
-                {loading && <div className='loader' />}
                 <h1 className="title">User Signup</h1>
                 <div className="form-item">
                     <label htmlFor="firstname">Name</label><div className='error'>{message}</div>

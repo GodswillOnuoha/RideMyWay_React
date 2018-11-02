@@ -12,7 +12,6 @@ class Auth extends React.Component {
     render() {
         const { auth, location } = this.props
 
-
         let redirectPath = '/'
         if (location.state) redirectPath = location.state.from.pathname
 
@@ -25,7 +24,7 @@ class Auth extends React.Component {
                 <Header />
                 <div id="content-wrapper">
                     <section id="login">
-                        <input type='checkbox' id='form-switch' />
+                        <input type='checkbox' id='form-switch' defaultChecked={this.props.checked} />
                         <Login />
                         <Register />
                     </section>

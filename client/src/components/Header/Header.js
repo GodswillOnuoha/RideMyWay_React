@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import AuthMenu from './AuthMenu'
 import Menu from './Menu'
 import { connect } from 'react-redux'
@@ -6,16 +6,26 @@ import { connect } from 'react-redux'
 const Header = (props) => {
     const { isLoggedIn } = props.auth
 
+    const loadingStyle = (props.auth.loading || props.ride.loading) ?
+        { display: 'block' } : { display: 'none' }
+
     let dispalyMenu = <AuthMenu />
     if (isLoggedIn) dispalyMenu = <Menu />
 
-    return dispalyMenu
+    return (
+        <Fragment >
+            {dispalyMenu}
+            <div id='spinner-background' style={loadingStyle}>
+                <div className='loader'></div>
+            </div>
+        </Fragment>
+    )
 }
 
 const mapStateToProps = (state) => {
-    const { auth } = state
+    const { auth, ride } = state
     return {
-        auth
+        auth, ride
     }
 }
 

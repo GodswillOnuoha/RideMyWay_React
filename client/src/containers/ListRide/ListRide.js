@@ -89,12 +89,12 @@ class ListRide extends React.Component {
                         {this.props.ride.error && <div className='message-bar'>{error}</div>}
                         <h1 className="title table-title">Available Ride Offers</h1>
 
-                        <table className="viewTable">
+                        <table className="viewTable sm">
                             <thead>
                                 <tr>
                                     <th>Boarding Time</th>
                                     <th>Boarding Stop</th>
-                                    <th>Final Destination</th>
+                                    <th>Destination</th>
                                     <th>Possible Stops </th>
                                     <th>Action</th>
                                 </tr>
@@ -103,11 +103,11 @@ class ListRide extends React.Component {
                                 {rides.filter(ride => ride.userid !== auth.user.id).map(ride => {
                                     return (
                                         <tr key={ride.rideid} >
-                                            <td>{ride.ridetime}</td>
-                                            <td>{ride.boardingstop}</td>
-                                            <td>{ride.finaldestination}</td>
-                                            <td>{JSON.parse(ride.possiblestops).join(', ')}</td>
-                                            <td >
+                                            <td data-column="Boarding Time">{ride.ridetime}</td>
+                                            <td data-column="Boarding Stop">{ride.boardingstop}</td>
+                                            <td data-column="Destination">{ride.finaldestination}</td>
+                                            <td data-column="Possible Stops">{JSON.parse(ride.possiblestops).join(', ')}</td>
+                                            <td data-column="Action">
                                                 {this.setResponseAction(ride)}
                                             </td>
                                         </tr>)

@@ -25,4 +25,4 @@ class Home extends React.Component {
         )
     }
 }
-export default connect(state => { user: state.users })(Home);
+export default connect(state => state)(Home);

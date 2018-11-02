@@ -33,7 +33,8 @@ class App extends React.Component {
         <Router>
           <Fragment>
             <Route exact path="/" component={Home} />
-            <Route exact path="/auth" component={Auth} />
+            <Route exact path="/login" component={Auth} />
+            <Route exact path="/register" render={props => <Auth {...props} checked={true} />} />
             <ProtectedRoute exact path="/logout" component={Logout} />
             <ProtectedRoute exact path="/user/profile" component={Profile} />
             <ProtectedRoute exact path="/ridee/ride" component={RideDetail} />
