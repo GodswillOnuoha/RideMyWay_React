@@ -45,7 +45,7 @@ npm install
 Run test
 
 ```
-- npm run test
+npm run test
 ```
 
 Start the app
