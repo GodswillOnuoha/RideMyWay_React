@@ -85,27 +85,29 @@ class RideDetail extends React.Component {
                                 <tr><td>Date :</td><td>{rideObj.ridedate}</td></tr>
                                 <tr><td>Time :</td><td>{rideObj.ridetime}</td></tr>
                             </tbody>
-                        </table>
-                        <hr />
+                        </table><br />
 
                         <span className="t_title">Users Joining the Ride </span>
-                        <table >
-                            <tbody>
+                        <table className="sm">
+                            <thead>
                                 <tr>
                                     <th>Username</th>
                                     <th>Rides taken</th>
                                     <th>About User </th>
                                     {owner ? <th>Action </th> : <th>Status </th>}
                                 </tr>
+                            </thead>
+                            <tbody>
+
 
 
                                 {requests.requests.map(req => {
                                     return (
                                         <tr key={req}  >
-                                            <td>{req} </td>
-                                            <td>2</td>
-                                            <td>Software Enginer with xyz</td>
-                                            <td>{owner ?
+                                            <td data-column="Username">{req} </td>
+                                            <td data-column="Rides taken">2</td>
+                                            <td data-column="About User"> Software Enginer with xyz</td>
+                                            <td data-column=" Action">{owner ?
                                                 <span className='accep-reject' >
                                                     <span data-rideid={rideObj.rideid} data-reqid={requests.requests.indexOf(req)} onClick={this.handleReject}> <FaTimes />reject</span>
                                                     <span data-rideid={rideObj.rideid} data-reqid={requests.requests.indexOf(req)} onClick={this.handleAccept}> < FaCheck /> accept </span>
@@ -135,11 +137,13 @@ class RideDetail extends React.Component {
                                         </tr>
                                     )
                                 })}
+
                             </tbody>
                         </table>
-
-                        {!owner && <button className="submit-btn join-btn" onClick={this.handleJoineRide}>Join Ride</button>}
-                        <button className="submit-btn join-btn" onClick={this.handleBack}>Back</button>
+                        <div className='btn-container'>
+                            {!owner && <button className="submit-btn join-btn" onClick={this.handleJoineRide}>Join Ride</button>}
+                            <button className="submit-btn join-btn" onClick={this.handleBack}>Back</button>
+                        </div>
                     </div>
                 </div>
                 <Footer />

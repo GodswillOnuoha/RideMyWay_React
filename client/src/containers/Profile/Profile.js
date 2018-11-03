@@ -59,20 +59,22 @@ class Profile extends React.Component {
                         <aside id="p_container2">
                             <button type="submit" id="profile_edit_btn">Edit</button>
                             <h1>About</h1>
-                            <table className="profile_t1" id="profile_t1">
-                                <tbody>
-                                    <tr><td>First Name:</td><td>{user.firstname}</td></tr>
-                                    <tr><td>User Name</td><td>{user.username}</td></tr>
-                                    <tr><td>City</td><td>...</td></tr>
-                                </tbody>
-                            </table>
-                            <table className="profile_t2">
-                                <tbody>
-                                    <tr><td>Last Name:</td><td>{user.lastname}</td></tr>
-                                    <tr><td>Email</td><td>{user.email}</td></tr>
-                                    <tr><td>State</td><td>Lagos</td></tr>
-                                </tbody>
-                            </table>
+                            <div id="profile_t">
+                                <table className="profile_t1" id="profile_t1">
+                                    <tbody>
+                                        <tr><td>First Name:</td><td>{user.firstname}</td></tr>
+                                        <tr><td>User Name</td><td>{user.username}</td></tr>
+                                        <tr><td>City</td><td>...</td></tr>
+                                    </tbody>
+                                </table>
+                                <table className="profile_t2">
+                                    <tbody>
+                                        <tr><td>Last Name:</td><td>{user.lastname}</td></tr>
+                                        <tr><td>Email</td><td>{user.email}</td></tr>
+                                        <tr><td>State</td><td>Lagos</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
 
                             <hr />
 
@@ -83,8 +85,8 @@ class Profile extends React.Component {
 
                                 <div className="table_wrapper">
                                     <h1 className="title table-title">Active Rides</h1>
-                                    <table>
-                                        <tbody>
+                                    <table className="sm">
+                                        <thead>
                                             <tr>
                                                 <th>Departure Time</th>
                                                 <th>Boarding Stop</th>
@@ -92,18 +94,19 @@ class Profile extends React.Component {
                                                 <th>Possible Stops </th>
                                                 <th>Action</th>
                                             </tr>
-
+                                        </thead>
+                                        <tbody>
 
                                             {
                                                 rides.filter(ride => ride.userid === user.id
                                                 ).map(ride => {
                                                     return (
                                                         <tr key={ride.rideid} >
-                                                            <td>{ride.ridetime}</td>
-                                                            <td>{ride.boardingstop}</td>
-                                                            <td>{ride.finaldestination}</td>
-                                                            <td>{JSON.parse(ride.possiblestops).join(', ')}</td>
-                                                            <td><span className='link' data-ride={JSON.stringify(ride)}
+                                                            <td data-column="Departure Time">{ride.ridetime}</td>
+                                                            <td data-column="Boarding Stop">{ride.boardingstop}</td>
+                                                            <td data-column="Destination">{ride.finaldestination}</td>
+                                                            <td data-column="Possible Stops">{JSON.parse(ride.possiblestops).join(', ')}</td>
+                                                            <td data-column="Action"><span className='link' data-ride={JSON.stringify(ride)}
                                                                 onClick={this.handleViewDetail.bind(this)}>
                                                                 <img width='26' src="https://res.cloudinary.com/dpnq32mzu/image/upload/v1540982262/Screenshot_2018-10-31_at_11.37.10_AM.png">
                                                                 </img></span>
@@ -117,11 +120,11 @@ class Profile extends React.Component {
                                             ).map(ride => {
                                                 return (
                                                     <tr key={ride.rideid} >
-                                                        <td>{ride.ridetime}</td>
-                                                        <td>{ride.boardingstop}</td>
-                                                        <td>{ride.finaldestination}</td>
-                                                        <td>{JSON.parse(ride.possiblestops).join(', ')}</td>
-                                                        <td><span>rejected</span></td>
+                                                        <td data-column="Departure Time">{ride.ridetime}</td>
+                                                        <td data-column="Boarding Stop">{ride.boardingstop}</td>
+                                                        <td data-column="Destination">{ride.finaldestination}</td>
+                                                        <td data-column="Possible Stops">{JSON.parse(ride.possiblestops).join(', ')}</td>
+                                                        <td data-column="Action"><span>rejected</span></td>
                                                     </tr>)
                                             })}
 
@@ -131,11 +134,11 @@ class Profile extends React.Component {
                                             ).map(ride => {
                                                 return (
                                                     <tr key={ride.rideid} >
-                                                        <td>{ride.ridetime}</td>
-                                                        <td>{ride.boardingstop}</td>
-                                                        <td>{ride.finaldestination}</td>
-                                                        <td>{JSON.parse(ride.possiblestops).join(', ')}</td>
-                                                        <td><span>accepted</span></td>
+                                                        <td data-column="Departure Time">{ride.ridetime}</td>
+                                                        <td data-column="Boarding Stop">{ride.boardingstop}</td>
+                                                        <td data-column="Destination">{ride.finaldestination}</td>
+                                                        <td data-column="Possible Stops">{JSON.parse(ride.possiblestops).join(', ')}</td>
+                                                        <td data-column="Action"><span>accepted</span></td>
                                                     </tr>)
                                             })}
 
@@ -145,11 +148,11 @@ class Profile extends React.Component {
                                             ).map(ride => {
                                                 return (
                                                     <tr key={ride.rideid} >
-                                                        <td>{ride.ridetime}</td>
-                                                        <td>{ride.boardingstop}</td>
-                                                        <td>{ride.finaldestination}</td>
-                                                        <td>{JSON.parse(ride.possiblestops).join(', ')}</td>
-                                                        <td><span>pending</span></td>
+                                                        <td data-column="Departure Time">{ride.ridetime}</td>
+                                                        <td data-column="Boarding Stop">{ride.boardingstop}</td>
+                                                        <td data-column="Destination">{ride.finaldestination}</td>
+                                                        <td data-column="Possible Stops">{JSON.parse(ride.possiblestops).join(', ')}</td>
+                                                        <td data-column="Action"><span>pending</span></td>
                                                     </tr>)
                                             })}
                                         </tbody>
@@ -158,8 +161,8 @@ class Profile extends React.Component {
 
                                 <div className="table_wrapper">
                                     <h1 className="title table-title">Rides Taken</h1>
-                                    <table>
-                                        <tbody>
+                                    <table className="sm">
+                                        <thead>
                                             <tr>
                                                 <th>Departure Time</th>
                                                 <th>Boarding Stop</th>
@@ -167,30 +170,16 @@ class Profile extends React.Component {
                                                 <th>Possible Stops </th>
                                                 <th>Action</th>
                                             </tr>
-
-                                            {/* <tr>
-                                                <td>6:30am</td>
-                                                <td>AP-Ikorodu</td>
-                                                <td>Eko Hotels</td>
-                                                <td>Ojota, Fadeyi, CMS</td>
-                                                <td><a href="#"><img width='26' src='https://res.cloudinary.com/dpnq32mzu/image/upload/v1540982262/Screenshot_2018-10-31_at_11.37.10_AM.png'></img></a></td>
-                                            </tr>
-
-                                            <tr>
-                                                <td>7:00am</td>
-                                                <td> Awoyaya (Ibejuleki) </td>
-                                                <td>Badagry</td>
-                                                <td>Lekki, Oshodi, Mile 12</td>
-                                                <td><a href="#"><img width='26' src='https://res.cloudinary.com/dpnq32mzu/image/upload/v1540982262/Screenshot_2018-10-31_at_11.37.10_AM.png'></img></a></td>
-                                            </tr> */}
+                                        </thead>
+                                        <tbody>
                                         </tbody>
                                     </table>
                                 </div>
 
                                 <div className="table_wrapper">
                                     <h1 className="title table-title">Rides given</h1>
-                                    <table>
-                                        <tbody>
+                                    <table className="sm">
+                                        <thead>
                                             <tr>
                                                 <th>Departure Time</th>
                                                 <th>Boarding Stop</th>
@@ -198,14 +187,9 @@ class Profile extends React.Component {
                                                 <th>Possible Stops </th>
                                                 <th>Action</th>
                                             </tr>
+                                        </thead>
+                                        <tbody>
 
-                                            {/* <tr>
-                                                <td>6:30am</td>
-                                                <td>AP-Ikorodu</td>
-                                                <td>Eko Hotels</td>
-                                                <td>Ojota, Fadeyi, CMS</td>
-                                                <td><a href="#"><img width='26' src='https://res.cloudinary.com/dpnq32mzu/image/upload/v1540982262/Screenshot_2018-10-31_at_11.37.10_AM.png'></img></a></td>
-                                            </tr> */}
                                         </tbody>
                                     </table>
                                 </div>

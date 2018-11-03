@@ -25,22 +25,18 @@ class Login extends React.Component {
     }
 
     render() {
-        const { message, loading } = this.props.auth
+        const { message } = this.props.auth
 
-        let submitButton = loading ?
-            <button type="submit" className="submit-btn" disabled>Login</button> :
-            <button type="submit" className="submit-btn">Login</button>
+
 
         return (
             < form className="login form" id="login-form" onSubmit={this.handleLogin} >
-                {loading && <div className='loader' />}
                 <h1 className="title">User Login</h1>
                 <div className="error">{message} </div>
                 <input type="email" name='email' placeholder="Email Address" autoFocus onChange={this.handleChange} required />
                 <input type="password" name='password' placeholder="Password"
                     pattern=".{8,}" title="8 characters minimum" onChange={this.handleChange} required />
-                {submitButton}
-                <p className="login-signup-switch"><Link to="/forgot_password">Forgot Password?</Link></p>
+                <button type="submit" className="submit-btn">Login</button>
                 <p className="login-signup-switch"><label htmlFor='form-switch'>Not a member? Signup</label></p>
             </form >
         )

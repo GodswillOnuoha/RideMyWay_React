@@ -41,36 +41,38 @@ class CreateRide extends React.Component {
             <div className="main-wrapper">
                 <Header />
                 <div id="content-wrapper">
+                    <div id="create-ride-container">
 
-                    <form className="form" id="create-rideform" onSubmit={this.handleSubmit}>
-                        <h1 className="title">Offer a Ride</h1>
-                        <div className="form-item">
-                            <label htmlFor="boardingStop"> Boarding stop </label>
-                            <input type="text" placeholder="eg. AP-Ikorodu" id="boardingStop" onChange={this.handleChange} required />
-                        </div>
-                        <div className="form-item">
-                            <label htmlFor="finalDestination"> Final Destination </label>
-                            <input type="text" placeholder="eg. Eko Hotels" id="finalDestination" onChange={this.handleChange} required />
-                        </div>
-                        <div className="form-item">
-                            <label htmlFor="possibleStops">  Possible stops </label>
-                            <input type="text" placeholder="eg. Ojota, Fadeyi, CMS" id="possibleStops" onChange={this.handleChange} />
-                        </div>
-                        <div className="form-item">
-                            <label htmlFor="date"> Ride date </label>
-                            <input type="date" placeholder="first name" id="date" required />
-                        </div>
-                        <div className="form-item">
-                            <label htmlFor="time"> Ride time </label>
-                            <input type="time" placeholder="last name" id="time" onMouseOut={this.handleChange} required />
-                        </div>
-                        <div className="form-item">
-                            <label htmlFor="vehicleType"> Vehicle type </label>
-                            <input type="text" placeholder="eg. Toyota Cemry" id="vehicleType" onChange={this.handleChange} required />
-                        </div>
-                        <div className="error">{error.message}</div>
-                        <button type="submit" className="submit-btn">Submit</button>
-                    </form>
+                        <form className="form" id="create-rideform" onSubmit={this.handleSubmit}>
+                            <h1 className="title">Offer a Ride</h1>
+                            <div className="form-item">
+                                <label htmlFor="boardingStop"> Boarding stop </label>
+                                <input type="text" placeholder="eg. AP-Ikorodu" id="boardingStop" onChange={this.handleChange} required />
+                            </div>
+                            <div className="form-item">
+                                <label htmlFor="finalDestination"> Final Destination </label>
+                                <input type="text" placeholder="eg. Eko Hotels" id="finalDestination" onChange={this.handleChange} required />
+                            </div>
+                            <div className="form-item">
+                                <label htmlFor="possibleStops">  Possible stops </label>
+                                <input type="text" placeholder="eg. Ojota, Fadeyi, CMS" id="possibleStops" onChange={this.handleChange} />
+                            </div>
+                            <div className="form-item">
+                                <label htmlFor="date"> Ride date </label>
+                                <input type="date" placeholder="first name" id="date" required />
+                            </div>
+                            <div className="form-item">
+                                <label htmlFor="time"> Ride time </label>
+                                <input type="time" placeholder="last name" id="time" onMouseOut={this.handleChange} required />
+                            </div>
+                            <div className="form-item">
+                                <label htmlFor="vehicleType"> Vehicle type </label>
+                                <input type="text" placeholder="eg. Toyota Cemry" id="vehicleType" onChange={this.handleChange} required />
+                            </div>
+                            <div className="error">{error.message}</div>
+                            <button type="submit" className="submit-btn">Submit</button>
+                        </form>
+                    </div>
 
                 </div>
                 <Footer />
