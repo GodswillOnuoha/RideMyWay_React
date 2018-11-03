@@ -4,7 +4,7 @@
 
 RideMyWay_React is a carpooling application that allows users to create ride sharing offer or join available ride offers
 
-Features
+## MVP Features
 - Users can create an account and log in.
 - Logged in user can add ride offers.
 - Users can view all available ride offers.
@@ -12,39 +12,47 @@ Features
 - A logged in user can view the requests to the ride offer they created.
 - A logged in user can accept or reject a join request.
 
-# Technologies
+## Technologies Used
 
-- React
-- Redux
-- Webpack
-- Jest, Babel, eslint
+* [ReactJS](https://reactjs.org/)
+* [Redux](https://redux.js.org/)
+* [React-Router](https://reacttraining.com/react-router/)
+* [Webpack](https://webpack.js.org/)
+* [Jest](https://jestjs.io/)
 
-#Hosted at
-App is hosted at https://ridemywayng.herokuapp.com
+
+## Hosted at
+https://ridemywayng.herokuapp.com
 
 ## Build Setup
 
-clone repo and cd into directory
+Clone repo and cd into the directory
 
+```
 git clone https://github.com/ozezzy/RideMyWay_React
+```
 
-# install dependencies
+```
+cd ~/path/to/RideMyWay_React
+```
 
+Install dependencies
+
+```
 npm install
+```
 
-#serve in development environment
-npm run dev
+Run test
 
-
-# build for production
-
-npm run build && npm start
-
-## Testing
-
-Testing with coverage data
-
+```
 - npm run test
+```
+
+Start the app
+
+```
+npm run dev
+```
 
 ## AUTHOR
 
