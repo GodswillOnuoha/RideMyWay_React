@@ -14,7 +14,7 @@ export default class Menu extends React.Component {
     }
 
     render() {
-        const showMobileStyle = this.state.showMobileMenu ? { display: 'block' } : { display: 'none' }
+        const showMobileStyle = this.state.showMobileMenu ? { display: 'block' } : null
 
         return (
             <nav className="navbar">
@@ -25,6 +25,8 @@ export default class Menu extends React.Component {
                 <div className="navbar-link" style={showMobileStyle}>
                     <Link to="/logout">Logout</Link>
                     <Link to="/user/profile"><FaUser /> Profile</Link>
+                    <Link to='/rides'>Join-Ride</Link>
+                    <Link to='/users/rides'>Offer-Ride</Link>
                 </div>
                 <div id='mobileMenuIcon' onClick={this.toggleMobileMenu}>
                     <span></span>
